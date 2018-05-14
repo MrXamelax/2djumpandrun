@@ -28,6 +28,10 @@ public class Spieler : MonoBehaviour {
 	AudioSource audio_blue;
 	AudioSource audio_green;
 	AudioSource audio_gold;
+	Animator door_red_anim;
+	Animator door_gold_anim;
+	Animator door_green_anim;
+	Animator door_blue_anim;
 
 	void Start () {
 		textfield = GameObject.FindGameObjectWithTag ("Textfield").GetComponent<Text> ();	
@@ -42,6 +46,10 @@ public class Spieler : MonoBehaviour {
 		audio_blue = GameObject.FindGameObjectWithTag ("Door_blue").GetComponent<AudioSource> ();
 		audio_green = GameObject.FindGameObjectWithTag ("Door_green").GetComponent<AudioSource> ();
 		audio_gold = GameObject.FindGameObjectWithTag ("Door_gold").GetComponent<AudioSource> ();
+		door_red_anim = GameObject.FindGameObjectWithTag ("door_red_anim").GetComponent<Animator> ();
+		door_gold_anim = GameObject.FindGameObjectWithTag ("door_gold_anim").GetComponent<Animator> ();
+		door_green_anim = GameObject.FindGameObjectWithTag ("door_green_anim").GetComponent<Animator> ();
+		door_blue_anim = GameObject.FindGameObjectWithTag ("door_blue_anim").GetComponent<Animator> ();
 
 
 	}
@@ -49,7 +57,7 @@ public class Spieler : MonoBehaviour {
 
 	void Update () {
 
-		if (Input.GetButton("Cancel") == true && CUI_View == true) {
+		if (Input.GetButton ("Cancel") == true && CUI_View == true) {
 			Time.timeScale = 1;
 			CUI.enabled = false;
 			CUI_View = false;
@@ -57,82 +65,84 @@ public class Spieler : MonoBehaviour {
 
 
 		//Tür ROT aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_red == true && Variablen.keyCount_red >0) {
+		if (Input.GetButton ("Aktivieren") && inTrigger_red == true && Variablen.keyCount_red > 0) {
 			audio_red.Play ();
 			Variablen.keyCount_red--;
+			door_red_anim.enabled = true;
 			Door_red.enabled = false;
 			firstactiv_red = true;
 		} 
-
-		//Tür BLAU aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue >0) {
-			audio_blue.Play ();
-			Variablen.keyCount_blue--;
-			Door_blue.enabled = false;
-			firstactiv_blue = true;
-		} 
+			 
 
 		//Tür GOLD aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_gold == true && Variablen.keyCount_gold >0) {
+		if (Input.GetButton ("Aktivieren") && inTrigger_gold == true && Variablen.keyCount_gold > 0) {
 			audio_gold.Play ();
 			Variablen.keyCount_gold--;
+			door_gold_anim.enabled = true;
 			Door_gold.enabled = false;
 			firstactiv_gold = true;
 		} 
 
-
 		//Tür GRÜN aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_green == true && Variablen.keyCount_green >0) {
+		if (Input.GetButton ("Aktivieren") && inTrigger_green == true && Variablen.keyCount_green > 0) {
 			audio_green.Play ();
 			Variablen.keyCount_green--;
+			door_green_anim.enabled = true;
 			Door_green.enabled = false;
 			firstactiv_green = true;
 		}
 
+		//Tür BLAU aufschließen
+		if (Input.GetButton ("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue > 0) {
+			audio_blue.Play ();
+			Variablen.keyCount_blue--;
+			door_blue_anim.enabled = true;
+			Door_blue.enabled = false;
+			firstactiv_blue = true;
+		}
 
 		//Tür ROT zuschließen
-		if (Input.GetButton("Deaktivieren") && inTrigger_red == true  && firstactiv_red == true) {
+		if (Input.GetButton ("Deaktivieren") && inTrigger_red == true && firstactiv_red == true) {
 			Variablen.keyCount_red++;
 			Door_red.enabled = true;
 			firstactiv_red = false;
 		}
 
 		//Tür BLAU zuschließen
-		if (Input.GetButton("Deaktivieren") && inTrigger_blue == true  && firstactiv_blue == true) {
+		if (Input.GetButton ("Deaktivieren") && inTrigger_blue == true && firstactiv_blue == true) {
 			Variablen.keyCount_blue++;
 			Door_blue.enabled = true;
 			firstactiv_blue = false;
 		}
 
 		//Tür GRÜN zuschließen
-		if (Input.GetButton("Deaktivieren") && inTrigger_green == true  && firstactiv_green == true) {
+		if (Input.GetButton ("Deaktivieren") && inTrigger_green == true && firstactiv_green == true) {
 			Variablen.keyCount_green++;
 			Door_green.enabled = true;
 			firstactiv_green = false;
 		}
 
 		//Tür GOLD zuschließen
-		if (Input.GetButton("Deaktivieren") && inTrigger_gold == true  && firstactiv_gold == true) {
+		if (Input.GetButton ("Deaktivieren") && inTrigger_gold == true && firstactiv_gold == true) {
 			Variablen.keyCount_gold++;
 			Door_gold.enabled = true;
 			firstactiv_gold = false;
 		}
 		
+
 	}
 
 
-	void OnTriggerEnter2D(Collider2D other){
+	void OnTriggerEnter2D(Collider2D other) {
 
 
 		// Textfeld aktivieren bei Betreten
-		if(other.gameObject.tag == "Press")
-		{
+		if(other.gameObject.tag == "Press") {
 			textfield.text = "Press E";
 			textfield.enabled = true;
 		}
 
-		if(other.gameObject.tag == "key_red" || other.gameObject.tag == "key_gold" || other.gameObject.tag == "key_green"|| other.gameObject.tag == "key_blue")
-		{
+		if(other.gameObject.tag == "key_red" || other.gameObject.tag == "key_gold" || other.gameObject.tag == "key_green"|| other.gameObject.tag == "key_blue") {
 			textfield.enabled = true;
 			textfield.text="Press E";
 		}
@@ -163,8 +173,7 @@ public class Spieler : MonoBehaviour {
 			textfield.enabled = false;
 		}
 
-		if(other.gameObject.tag == "key_red" || other.gameObject.tag == "key_gold" || other.gameObject.tag == "key_green" || other.gameObject.tag == "key_blue")
-		{
+		if(other.gameObject.tag == "key_red" || other.gameObject.tag == "key_gold" || other.gameObject.tag == "key_green" || other.gameObject.tag == "key_blue") {
 			textfield.enabled = false;
 		}
 
@@ -192,7 +201,7 @@ public class Spieler : MonoBehaviour {
 
 
 		//AKTE1
-		if(other.gameObject.tag == "Akte1" && Input.GetButton("Lesen")){
+		if(other.gameObject.tag == "Akte1" && Input.GetButton("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
 			CUI_Info.text = "Hallo ich bin die Info";
@@ -201,7 +210,7 @@ public class Spieler : MonoBehaviour {
 		}
 
 		//AKTE2
-		if(other.gameObject.tag == "Akte2" && Input.GetButton("Lesen")){
+		if(other.gameObject.tag == "Akte2" && Input.GetButton("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
 			CUI_Info.text = "Testakte";
@@ -211,26 +220,22 @@ public class Spieler : MonoBehaviour {
 
 
 		//Schlüssel aufheben
-		if(other.gameObject.tag == "key_red" && Input.GetButton("Aktivieren"))
-		{
+		if(other.gameObject.tag == "key_red" && Input.GetButton("Aktivieren")) {
 			Variablen.keyCount_red++;
 			Destroy (other.gameObject);
 		}
 
-		if(other.gameObject.tag == "key_gold" && Input.GetButton("Aktivieren"))
-		{
+		if(other.gameObject.tag == "key_gold" && Input.GetButton("Aktivieren")) {
 			Variablen.keyCount_gold++;
 			Destroy (other.gameObject);
 		}
 
-		if(other.gameObject.tag == "key_blue" && Input.GetButton("Aktivieren"))
-		{
+		if(other.gameObject.tag == "key_blue" && Input.GetButton("Aktivieren")) {
 			Variablen.keyCount_blue++;
 			Destroy (other.gameObject);
 		}
 
-		if(other.gameObject.tag == "key_green" && Input.GetButton("Aktivieren"))
-		{
+		if(other.gameObject.tag == "key_green" && Input.GetButton("Aktivieren")) {
 			Variablen.keyCount_green++;
 			Destroy (other.gameObject);
 		}
