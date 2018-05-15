@@ -29,11 +29,11 @@ public class PlayerMovement : MonoBehaviour {
 		playerAnim.SetFloat ("speed", Mathf.Abs (horizontal));
 
 		if (horizontal < 0) {
-			transform.localScale = new Vector3 (-1, 1, 1);
+			transform.localScale = new Vector3 (-0.874032f, 0.874032f, 0.874032f);
 		}
 
 		if (horizontal > 0) {
-			transform.localScale = new Vector3 (1, 1, 1);
+			transform.localScale = new Vector3 (0.874032f, 0.874032f, 0.874032f);
 		}
 
 
@@ -48,7 +48,7 @@ public class PlayerMovement : MonoBehaviour {
 	}
 
 	void OnCollisionEnter2D(Collision2D other){
-		if (other.collider.tag == "Boden") {
+		if (other.collider.tag == "Boden" || other.collider.tag =="Kiste") {
 			Debug.Log ("Untergrund");
 			grounded = true;
 		} else {

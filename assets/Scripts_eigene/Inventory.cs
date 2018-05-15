@@ -26,10 +26,10 @@ public class Inventory : MonoBehaviour {
 		//keycardRed = Resources.Load<Sprite>("KeycardRot");
 
 
-		keyRed = GameObject.FindGameObjectWithTag ("KeycardRed").GetComponent<Image> ();
-		keyGold = GameObject.FindGameObjectWithTag ("KeycardGold").GetComponent<Image> ();
-		keyBlue = GameObject.FindGameObjectWithTag ("").GetComponent<Image> ();
-		keyGreen = GameObject.FindGameObjectWithTag ("").GetComponent<Image> ();
+		//keyRed = GameObject.FindGameObjectWithTag ("KeycardRed").GetComponent<Image> ();
+		//keyGold = GameObject.FindGameObjectWithTag ("KeycardGold").GetComponent<Image> ();
+		//keyBlue = GameObject.FindGameObjectWithTag ("").GetComponent<Image> ();
+		//keyGreen = GameObject.FindGameObjectWithTag ("").GetComponent<Image> ();
 
 
 	}
