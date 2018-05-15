@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Spieler : MonoBehaviour {
 
@@ -20,16 +21,19 @@ public class Spieler : MonoBehaviour {
 	AudioSource audio_blue;
 	AudioSource audio_green;
 	AudioSource audio_gold;
+	AudioSource audio_jumppad;
 	Animator door_red_anim;
 	Animator door_gold_anim;
 	Animator door_green_anim;
 	Animator door_blue_anim;
+	public LevelManager levelManager;
 
 	void Start () {
 		textfield = GameObject.FindGameObjectWithTag ("Textfield").GetComponent<Text> ();
 		CUI = GameObject.FindGameObjectWithTag ("CUI").GetComponent<Canvas>();
 		CUI_Text = GameObject.FindGameObjectWithTag ("CUI_Text").GetComponent<Text>();
 		CUI_Info = GameObject.FindGameObjectWithTag ("CUI_Info").GetComponent<Text>();
+		audio_jumppad = GameObject.FindGameObjectWithTag ("Jumppad").GetComponent<AudioSource> ();
 		audio_red = GameObject.FindGameObjectWithTag ("Door_red").GetComponent<AudioSource> ();
 		audio_blue = GameObject.FindGameObjectWithTag ("Door_blue").GetComponent<AudioSource> ();
 		audio_green = GameObject.FindGameObjectWithTag ("Door_green").GetComponent<AudioSource> ();
@@ -38,6 +42,7 @@ public class Spieler : MonoBehaviour {
 		door_gold_anim = GameObject.FindGameObjectWithTag ("door_gold_anim").GetComponent<Animator> ();
 		door_green_anim = GameObject.FindGameObjectWithTag ("door_green_anim").GetComponent<Animator> ();
 		door_blue_anim = GameObject.FindGameObjectWithTag ("door_blue_anim").GetComponent<Animator> ();
+		levelManager = FindObjectOfType<LevelManager> ();
 
 
 	}
@@ -87,8 +92,13 @@ public class Spieler : MonoBehaviour {
 
 	}
 
-
 	void OnTriggerEnter2D(Collider2D other) {
+
+
+
+		if (other.gameObject.tag == "Jumppad") {
+			audio_jumppad.Play ();
+		}
 
 
 		// Textfeld aktivieren bei Betreten
