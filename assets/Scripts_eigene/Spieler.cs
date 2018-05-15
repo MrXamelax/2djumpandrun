@@ -26,7 +26,6 @@ public class Spieler : MonoBehaviour {
 	Animator door_gold_anim;
 	Animator door_green_anim;
 	Animator door_blue_anim;
-	public LevelManager levelManager;
 
 	void Start () {
 		textfield = GameObject.FindGameObjectWithTag ("Textfield").GetComponent<Text> ();
@@ -42,7 +41,6 @@ public class Spieler : MonoBehaviour {
 		door_gold_anim = GameObject.FindGameObjectWithTag ("door_gold_anim").GetComponent<Animator> ();
 		door_green_anim = GameObject.FindGameObjectWithTag ("door_green_anim").GetComponent<Animator> ();
 		door_blue_anim = GameObject.FindGameObjectWithTag ("door_blue_anim").GetComponent<Animator> ();
-		levelManager = FindObjectOfType<LevelManager> ();
 
 
 	}
@@ -84,10 +82,10 @@ public class Spieler : MonoBehaviour {
 
 		//Tür BLAU aufschließen
 		if (Input.GetButton ("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue == true) {
-			audio_blue.Play ();
 			Variablen.keyCount--;
 			Variablen.keyCount_blue = false;
 			door_blue_anim.enabled = true;
+			audio_blue.Play ();
 		}
 
 	}

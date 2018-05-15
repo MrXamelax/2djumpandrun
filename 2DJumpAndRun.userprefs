@@ -1,11 +1,8 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="assets\Scripts_eigene\LevelManager.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="assets\Scripts_eigene\Spieler.cs">
     <Files>
-      <File FileName="assets\Scripts_eigene\Spieler.cs" Line="37" Column="1" />
-      <File FileName="assets\Scripts_eigene\neustart.cs" Line="22" Column="2" />
-      <File FileName="assets\Scripts_eigene\LevelManager.cs" Line="25" Column="2" />
-      <File FileName="assets\Scripts_eigene\Inventory.cs" Line="21" Column="1" />
+      <File FileName="assets\Scripts_eigene\Spieler.cs" Line="31" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
