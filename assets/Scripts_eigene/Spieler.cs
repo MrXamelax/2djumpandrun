@@ -11,19 +11,11 @@ public class Spieler : MonoBehaviour {
 	private bool inTrigger_green = false;
 	private bool inTrigger_red = false;
 	private bool inTrigger_gold = false;
-	private bool firstactiv_red = false;
-	private bool firstactiv_gold = false;
-	private bool firstactiv_green = false;
-	private bool firstactiv_blue = false;
 	public static bool CUI_View = false;
 	private Text CUI_Info;
 	private Text CUI_Text;
-	private Image CUI_Bild;
+	private Image CUI_Bild; 
 	Canvas CUI;
-	BoxCollider2D Door_red;
-	BoxCollider2D Door_gold;
-	BoxCollider2D Door_blue;
-	BoxCollider2D Door_green;
 	AudioSource audio_red;
 	AudioSource audio_blue;
 	AudioSource audio_green;
@@ -34,11 +26,7 @@ public class Spieler : MonoBehaviour {
 	Animator door_blue_anim;
 
 	void Start () {
-		textfield = GameObject.FindGameObjectWithTag ("Textfield").GetComponent<Text> ();	
-		Door_red = GameObject.FindGameObjectWithTag ("Door_red").GetComponent<BoxCollider2D> ();
-		Door_gold = GameObject.FindGameObjectWithTag ("Door_gold").GetComponent<BoxCollider2D> ();
-		Door_blue = GameObject.FindGameObjectWithTag ("Door_blue").GetComponent<BoxCollider2D> ();
-		Door_green = GameObject.FindGameObjectWithTag ("Door_green").GetComponent<BoxCollider2D> ();
+		textfield = GameObject.FindGameObjectWithTag ("Textfield").GetComponent<Text> ();
 		CUI = GameObject.FindGameObjectWithTag ("CUI").GetComponent<Canvas>();
 		CUI_Text = GameObject.FindGameObjectWithTag ("CUI_Text").GetComponent<Text>();
 		CUI_Info = GameObject.FindGameObjectWithTag ("CUI_Info").GetComponent<Text>();
@@ -70,8 +58,6 @@ public class Spieler : MonoBehaviour {
 			Variablen.keyCount--;
 			Variablen.keyCount_red = false;
 			door_red_anim.enabled = true;
-			Door_red.enabled = false;
-			firstactiv_red = true;
 		} 
 			 
 
@@ -81,8 +67,6 @@ public class Spieler : MonoBehaviour {
 			Variablen.keyCount--;
 			Variablen.keyCount_gold = false;
 			door_gold_anim.enabled = true;
-			Door_gold.enabled = false;
-			firstactiv_gold = true;
 		} 
 
 		//Tür GRÜN aufschließen
@@ -91,8 +75,6 @@ public class Spieler : MonoBehaviour {
 			Variablen.keyCount--;
 			Variablen.keyCount_green = false;
 			door_green_anim.enabled = true;
-			Door_green.enabled = false;
-			firstactiv_green = true;
 		}
 
 		//Tür BLAU aufschließen
@@ -101,39 +83,7 @@ public class Spieler : MonoBehaviour {
 			Variablen.keyCount--;
 			Variablen.keyCount_blue = false;
 			door_blue_anim.enabled = true;
-			Door_blue.enabled = false;
-			firstactiv_blue = true;
 		}
-
-		/*
-		//Tür ROT zuschließen
-		if (Input.GetButton ("Deaktivieren") && inTrigger_red == true && firstactiv_red == true) {
-			Variablen.keyCount_red++;
-			Door_red.enabled = true;
-			firstactiv_red = false;
-		}
-
-		//Tür BLAU zuschließen
-		if (Input.GetButton ("Deaktivieren") && inTrigger_blue == true && firstactiv_blue == true) {
-			Variablen.keyCount_blue++;
-			Door_blue.enabled = true;
-			firstactiv_blue = false;
-		}
-
-		//Tür GRÜN zuschließen
-		if (Input.GetButton ("Deaktivieren") && inTrigger_green == true && firstactiv_green == true) {
-			Variablen.keyCount_green++;
-			Door_green.enabled = true;
-			firstactiv_green = false;
-		}
-
-		//Tür GOLD zuschließen
-		if (Input.GetButton ("Deaktivieren") && inTrigger_gold == true && firstactiv_gold == true) {
-			Variablen.keyCount_gold++;
-			Door_gold.enabled = true;
-			firstactiv_gold = false;
-		}
-		*/
 
 	}
 

@@ -23,11 +23,11 @@ public class Inventory : MonoBehaviour {
 		}
 
 		//keycardRed = GameObject.FindGameObjectWithTag("KeycardRed").GetComponent<Sprite>();
-		//keycardRed = Resources.Load<Sprite>("KeycardRot");
+		keycardRed = Resources.Load<Sprite>("KeycardRot");
 
 
-		//keyRed = GameObject.FindGameObjectWithTag ("KeycardRed").GetComponent<Image> ();
-		//keyGold = GameObject.FindGameObjectWithTag ("KeycardGold").GetComponent<Image> ();
+		keyRed = GameObject.FindGameObjectWithTag ("item2").GetComponent<Image> ();
+		keyGold = GameObject.FindGameObjectWithTag ("item0").GetComponent<Image> ();
 		//keyBlue = GameObject.FindGameObjectWithTag ("").GetComponent<Image> ();
 		//keyGreen = GameObject.FindGameObjectWithTag ("").GetComponent<Image> ();
 
@@ -38,9 +38,9 @@ public class Inventory : MonoBehaviour {
 	void Update () {
 		if (Variablen.keyCount_red == true) {
 			Debug.Log (Variablen.keyCount);
-			//image_items [Variablen.keyCount - 1].sprite = keycardRed;
+			keyRed = image_items [0];
 			//image_items [Variablen.keyCount - 1].enabled = true;
-			image_items[2].enabled = true;
+			image_items[0].enabled = true;
 		} else {
 			image_items[2].enabled = false;
 			//image_items[Variablen.keyCount].enabled = false;
