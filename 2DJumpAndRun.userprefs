@@ -2,10 +2,9 @@
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
   <MonoDevelop.Ide.Workbench ActiveDocument="assets\Scripts_eigene\Spieler.cs">
     <Files>
-      <File FileName="assets\Scripts_eigene\Spieler.cs" Line="90" Column="35" />
-      <File FileName="assets\Scripts_eigene\checkpoint.cs" Line="1" Column="1" />
-      <File FileName="assets\Scripts_eigene\Trigger.cs" Line="1" Column="1" />
-      <File FileName="assets\Scripts_eigene\Inventory.cs" Line="1" Column="1" />
+      <File FileName="assets\Scripts_eigene\Spieler.cs" Line="249" Column="11" />
+      <File FileName="assets\Scripts_eigene\Variablen.cs" Line="10" Column="33" />
+      <File FileName="assets\Scripts_eigene\Inventory.cs" Line="43" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

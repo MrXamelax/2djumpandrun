@@ -65,9 +65,10 @@ public class Spieler : MonoBehaviour {
 
 
 		//Tür ROT aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_red == true && Variablen.keyCount_red > 0) {
+		if (Input.GetButton ("Aktivieren") && inTrigger_red == true && Variablen.keyCount_red == true) {
 			audio_red.Play ();
-			Variablen.keyCount_red--;
+			Variablen.keyCount--;
+			Variablen.keyCount_red = false;
 			door_red_anim.enabled = true;
 			Door_red.enabled = false;
 			firstactiv_red = true;
@@ -75,32 +76,36 @@ public class Spieler : MonoBehaviour {
 			 
 
 		//Tür GOLD aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_gold == true && Variablen.keyCount_gold > 0) {
+		if (Input.GetButton ("Aktivieren") && inTrigger_gold == true && Variablen.keyCount_gold == true) {
 			audio_gold.Play ();
-			Variablen.keyCount_gold--;
+			Variablen.keyCount--;
+			Variablen.keyCount_gold = false;
 			door_gold_anim.enabled = true;
 			Door_gold.enabled = false;
 			firstactiv_gold = true;
 		} 
 
 		//Tür GRÜN aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_green == true && Variablen.keyCount_green > 0) {
+		if (Input.GetButton ("Aktivieren") && inTrigger_green == true && Variablen.keyCount_green == true) {
 			audio_green.Play ();
-			Variablen.keyCount_green--;
+			Variablen.keyCount--;
+			Variablen.keyCount_green = false;
 			door_green_anim.enabled = true;
 			Door_green.enabled = false;
 			firstactiv_green = true;
 		}
 
 		//Tür BLAU aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue > 0) {
+		if (Input.GetButton ("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue == true) {
 			audio_blue.Play ();
-			Variablen.keyCount_blue--;
+			Variablen.keyCount--;
+			Variablen.keyCount_blue = false;
 			door_blue_anim.enabled = true;
 			Door_blue.enabled = false;
 			firstactiv_blue = true;
 		}
 
+		/*
 		//Tür ROT zuschließen
 		if (Input.GetButton ("Deaktivieren") && inTrigger_red == true && firstactiv_red == true) {
 			Variablen.keyCount_red++;
@@ -128,7 +133,7 @@ public class Spieler : MonoBehaviour {
 			Door_gold.enabled = true;
 			firstactiv_gold = false;
 		}
-		
+		*/
 
 	}
 
@@ -219,25 +224,30 @@ public class Spieler : MonoBehaviour {
 		}
 
 
-		//Schlüssel aufheben
-		if(other.gameObject.tag == "key_red" && Input.GetButton("Aktivieren")) {
-			Variablen.keyCount_red++;
-			Destroy (other.gameObject);
-		}
-
-		if(other.gameObject.tag == "key_gold" && Input.GetButton("Aktivieren")) {
-			Variablen.keyCount_gold++;
-			Destroy (other.gameObject);
-		}
-
-		if(other.gameObject.tag == "key_blue" && Input.GetButton("Aktivieren")) {
-			Variablen.keyCount_blue++;
-			Destroy (other.gameObject);
-		}
-
-		if(other.gameObject.tag == "key_green" && Input.GetButton("Aktivieren")) {
-			Variablen.keyCount_green++;
-			Destroy (other.gameObject);
+		//collect key
+		if (Input.GetButton("Aktivieren")) {
+			switch(other.gameObject.tag) {
+			case "key_blue":
+				Variablen.keyCount++;
+				Variablen.keyCount_blue = true;
+				Destroy (other.gameObject);
+				break;
+			case "key_red":
+				Variablen.keyCount++;
+				Variablen.keyCount_red = true;
+				Destroy (other.gameObject);
+				break;
+			case "key_gold":
+				Variablen.keyCount++;
+				Variablen.keyCount_gold = true;
+				Destroy (other.gameObject);
+				break;
+			case "key_green":
+				Variablen.keyCount++;
+				Variablen.keyCount_green = true;
+				Destroy (other.gameObject);
+				break;
+			}
 		}
 	}
 
