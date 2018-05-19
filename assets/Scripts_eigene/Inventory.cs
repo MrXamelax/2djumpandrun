@@ -39,6 +39,7 @@ public class Inventory : MonoBehaviour {
 		if (Variablen.keyCount_red == true) {
 			Debug.Log (Variablen.keyCount);
 			keyRed = image_items [0];
+			//image_items [Variablen.keyCount - 1].sprite = keycardRed;
 			//image_items [Variablen.keyCount - 1].enabled = true;
 			image_items[0].enabled = true;
 		} else {
