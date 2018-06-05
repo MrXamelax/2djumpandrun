@@ -249,6 +249,7 @@
     <Compile Include="assets\Scripts_eigene\neustart.cs" />
     <Compile Include="assets\Scripts_eigene\nextlevel.cs" />
     <Compile Include="assets\Scripts_eigene\Pause_Menu.cs" />
+    <Compile Include="assets\Scripts_eigene\PlayerMovement.cs" />
     <Compile Include="assets\Scripts_eigene\quit.cs" />
     <Compile Include="assets\Scripts_eigene\Spieler.cs" />
     <Compile Include="assets\Scripts_eigene\start.cs" />

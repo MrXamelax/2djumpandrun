@@ -7,7 +7,5 @@ public static class Variablen{
 	public static bool keyCount_gold = false;
 	public static bool keyCount_blue = false;
 	public static bool keyCount_green = false;
-	public static int keyCount = -1;
-
 	public static bool allowPause = true;
 }

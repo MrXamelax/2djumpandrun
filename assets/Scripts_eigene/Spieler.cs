@@ -70,7 +70,6 @@ public class Spieler : MonoBehaviour {
 		//Tür ROT aufschließen
 		if (Input.GetButtonDown("Aktivieren") && inTrigger_red == true && Variablen.keyCount_red == true) {
 			audio_red.Play ();
-			Variablen.keyCount--;
 			Variablen.keyCount_red = false;
 			door_red_anim.enabled = true;
 			Inventory.instance.DrawInventory (1, false);
@@ -80,7 +79,6 @@ public class Spieler : MonoBehaviour {
 		//Tür GOLD aufschließen
 		if (Input.GetButtonDown("Aktivieren") && inTrigger_gold == true && Variablen.keyCount_gold == true) {
 			audio_gold.Play ();
-			Variablen.keyCount--;
 			Variablen.keyCount_gold = false;
 			door_gold_anim.enabled = true;
 			Inventory.instance.DrawInventory (2, false);
@@ -89,7 +87,6 @@ public class Spieler : MonoBehaviour {
 		//Tür GRÜN aufschließen
 		if (Input.GetButtonDown("Aktivieren") && inTrigger_green == true && Variablen.keyCount_green == true) {
 			audio_green.Play ();
-			Variablen.keyCount--;
 			Variablen.keyCount_green = false;
 			door_green_anim.enabled = true;
 			Inventory.instance.DrawInventory (3, false);
@@ -97,7 +94,6 @@ public class Spieler : MonoBehaviour {
 
 		//Tür BLAU aufschließen
 		if (Input.GetButtonDown("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue == true) {
-			Variablen.keyCount--;
 			Variablen.keyCount_blue = false;
 			door_blue_anim.enabled = true;
 			Inventory.instance.DrawInventory (0, false);
@@ -203,25 +199,21 @@ public class Spieler : MonoBehaviour {
 			byte num = 255;
 			switch(other.gameObject.tag) {
 			case "key_blue":
-				Variablen.keyCount++;
 				Variablen.keyCount_blue = true;
 				Destroy (other.gameObject);
 				num = 0;
 				break;
 			case "key_red":
-				Variablen.keyCount++;
 				Variablen.keyCount_red = true;
 				Destroy (other.gameObject);
 				num = 1;
 				break;
 			case "key_gold":
-				Variablen.keyCount++;
 				Variablen.keyCount_gold = true;
 				Destroy (other.gameObject);
 				num = 2;
 				break;
 			case "key_green":
-				Variablen.keyCount++;
 				Variablen.keyCount_green = true;
 				Destroy (other.gameObject);
 				num = 3;
