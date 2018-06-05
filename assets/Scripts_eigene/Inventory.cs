@@ -5,37 +5,50 @@ using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
 
+	#region Singleton
+	public static Inventory instance;
+	void Awake(){
+		if (instance)
+			Debug.LogError ("Mehrere Inventare auf" + transform.name);
+		instance = this;
+	}
+	#endregion
 
-	Image keyRed; 
-	Image keyGold; 
-	Image keyBlue; 
-	Image keyGreen; 
-
-
-	public Sprite keycardRed;
-	public Image[] image_items = new Image[4];
+	public Sprite[] keycards;
+	Image[] image_items = new Image[4];
+	List<Sprite> collectedCards = new List<Sprite>();
 
 	void Start () {
 		
 		for (int i=0; i<4; i++) {
 			image_items[i] = GameObject.FindGameObjectWithTag ("item"+i).GetComponent<Image> ();
 			image_items[i].enabled = false;
+			image_items[i].sprite = null;
 		}
 
-		//keycardRed = GameObject.FindGameObjectWithTag("KeycardRed").GetComponent<Sprite>();
-		keycardRed = Resources.Load<Sprite>("KeycardRot");
-
-
-		keyRed = GameObject.FindGameObjectWithTag ("item2").GetComponent<Image> ();
-		keyGold = GameObject.FindGameObjectWithTag ("item0").GetComponent<Image> ();
-		//keyBlue = GameObject.FindGameObjectWithTag ("").GetComponent<Image> ();
-		//keyGreen = GameObject.FindGameObjectWithTag ("").GetComponent<Image> ();
-
-
 	}
-	
-	// Update is called once per frame
-	void Update () {
+
+
+	public void DrawInventory (byte i, bool add) {
+		if (i == 255)
+			return;
+
+		if (add) {
+			collectedCards.Add (keycards [i]);
+		} else {
+			collectedCards.Remove (keycards [i]);
+		}
+
+		for (int j = 0; j < image_items.Length; j++) {
+			if (collectedCards.Count > j) {
+				image_items [j].sprite = collectedCards [j];
+				image_items [j].enabled = true;
+			} else {
+				image_items [j].enabled = false;
+			}
+		}
+
+		/*
 		if (Variablen.keyCount_red == true) {
 			Debug.Log (Variablen.keyCount);
 			keyRed = image_items [0];
@@ -86,6 +99,8 @@ public class Inventory : MonoBehaviour {
 		}
 
 		*/
+
+
 	}
 
 }

@@ -5,14 +5,20 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Spieler : MonoBehaviour {
-
+	
+	#region Singleton
+	public static Spieler instance;
+	void Awake(){
+		instance = this;
+	}
+	#endregion
 
 	private Text textfield;
 	private bool inTrigger_blue = false;
 	private bool inTrigger_green = false;
 	private bool inTrigger_red = false;
 	private bool inTrigger_gold = false;
-	public static bool CUI_View = false;
+	public bool CUI_View = false;
 	private Text CUI_Info;
 	private Text CUI_Text;
 	private Image CUI_Bild; 
@@ -44,47 +50,57 @@ public class Spieler : MonoBehaviour {
 
 
 	}
-	
+
+	IEnumerator BlockPause(){
+		Variablen.allowPause = false;
+		yield return new WaitForSeconds (0.1f);
+		Variablen.allowPause = true;
+	}
 
 	void Update () {
 
-		if (Input.GetButton ("Cancel") == true && CUI_View == true) {
-			Time.timeScale = 1;
-			CUI.enabled = false;
+		if (Input.GetButtonDown("Cancel") == true && CUI_View == true) {
 			CUI_View = false;
+			CUI.enabled = false;
+			Time.timeScale = 1;
+			StartCoroutine (BlockPause ());
 		}
 
 
 		//Tür ROT aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_red == true && Variablen.keyCount_red == true) {
+		if (Input.GetButtonDown("Aktivieren") && inTrigger_red == true && Variablen.keyCount_red == true) {
 			audio_red.Play ();
 			Variablen.keyCount--;
 			Variablen.keyCount_red = false;
 			door_red_anim.enabled = true;
+			Inventory.instance.DrawInventory (1, false);
 		} 
 			 
 
 		//Tür GOLD aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_gold == true && Variablen.keyCount_gold == true) {
+		if (Input.GetButtonDown("Aktivieren") && inTrigger_gold == true && Variablen.keyCount_gold == true) {
 			audio_gold.Play ();
 			Variablen.keyCount--;
 			Variablen.keyCount_gold = false;
 			door_gold_anim.enabled = true;
+			Inventory.instance.DrawInventory (2, false);
 		} 
 
 		//Tür GRÜN aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_green == true && Variablen.keyCount_green == true) {
+		if (Input.GetButtonDown("Aktivieren") && inTrigger_green == true && Variablen.keyCount_green == true) {
 			audio_green.Play ();
 			Variablen.keyCount--;
 			Variablen.keyCount_green = false;
 			door_green_anim.enabled = true;
+			Inventory.instance.DrawInventory (3, false);
 		}
 
 		//Tür BLAU aufschließen
-		if (Input.GetButton ("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue == true) {
+		if (Input.GetButtonDown("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue == true) {
 			Variablen.keyCount--;
 			Variablen.keyCount_blue = false;
 			door_blue_anim.enabled = true;
+			Inventory.instance.DrawInventory (0, false);
 			audio_blue.Play ();
 		}
 
@@ -164,7 +180,7 @@ public class Spieler : MonoBehaviour {
 
 
 		//AKTE1
-		if(other.gameObject.tag == "Akte1" && Input.GetButton("Lesen")) {
+		if(other.gameObject.tag == "Akte1" && Input.GetButtonDown("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
 			CUI_Info.text = "Hallo ich bin die Info";
@@ -173,7 +189,7 @@ public class Spieler : MonoBehaviour {
 		}
 
 		//AKTE2
-		if(other.gameObject.tag == "Akte2" && Input.GetButton("Lesen")) {
+		if(other.gameObject.tag == "Akte2" && Input.GetButtonDown("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
 			CUI_Info.text = "Testakte";
@@ -183,29 +199,35 @@ public class Spieler : MonoBehaviour {
 
 
 		//collect key
-		if (Input.GetButton("Aktivieren")) {
+		if (Input.GetButtonDown("Aktivieren")) {
+			byte num = 255;
 			switch(other.gameObject.tag) {
 			case "key_blue":
 				Variablen.keyCount++;
 				Variablen.keyCount_blue = true;
 				Destroy (other.gameObject);
+				num = 0;
 				break;
 			case "key_red":
 				Variablen.keyCount++;
 				Variablen.keyCount_red = true;
 				Destroy (other.gameObject);
+				num = 1;
 				break;
 			case "key_gold":
 				Variablen.keyCount++;
 				Variablen.keyCount_gold = true;
 				Destroy (other.gameObject);
+				num = 2;
 				break;
 			case "key_green":
 				Variablen.keyCount++;
 				Variablen.keyCount_green = true;
 				Destroy (other.gameObject);
+				num = 3;
 				break;
 			}
+			Inventory.instance.DrawInventory (num, true);
 		}
 	}
 

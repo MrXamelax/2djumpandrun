@@ -6,9 +6,9 @@ public class Pause_Menu : MonoBehaviour {
 	public Transform canvas;
 
 	void Update () {
-		if (Input.GetButtonDown ("Pause") && Spieler.CUI_View == false ) 
+		if (Variablen.allowPause && Input.GetButtonDown ("Pause") ) 
 		{
-			Pause ();	
+			Pause();	
 		}
 	}
 
