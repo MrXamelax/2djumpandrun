@@ -203,7 +203,10 @@ public class Spieler : MonoBehaviour {
 			btn_collider.enabled = false;
 
 		} 
+		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "destroy") {
+			Destroy (other.gameObject);
 
+		} 
 
 		//collect key
 		if (Input.GetButtonDown("Aktivieren")) {
