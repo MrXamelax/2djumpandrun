@@ -32,6 +32,7 @@ public class Spieler : MonoBehaviour {
 	Animator door_gold_anim;
 	Animator door_green_anim;
 	Animator door_blue_anim;
+	BoxCollider2D btn_collider;
 
 	void Start () {
 		textfield = GameObject.FindGameObjectWithTag ("Textfield").GetComponent<Text> ();
@@ -47,6 +48,7 @@ public class Spieler : MonoBehaviour {
 		door_gold_anim = GameObject.FindGameObjectWithTag ("door_gold_anim").GetComponent<Animator> ();
 		door_green_anim = GameObject.FindGameObjectWithTag ("door_green_anim").GetComponent<Animator> ();
 		door_blue_anim = GameObject.FindGameObjectWithTag ("door_blue_anim").GetComponent<Animator> ();
+		btn_collider = GameObject.FindGameObjectWithTag ("button").GetComponent<BoxCollider2D> ();
 
 
 	}
@@ -179,7 +181,8 @@ public class Spieler : MonoBehaviour {
 		if(other.gameObject.tag == "Akte1" && Input.GetButtonDown("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
-			CUI_Info.text = "Hallo ich bin die Info";
+			CUI_Info.text = "Bericht 72465 Testlauf Subjekt 8****";
+			CUI_Text.text = "-Subjekt zeigt fortgeschrittene Umgebungserkennung nach Initialisierung\n-Motorische Funktionen **********\n-9:42 Subjekt betritt den Testbereich 1\n-******* realisiert ******** *** ******** *** ******** auf *** Zustand\n-10:10 Subjekt betritt Testbereich 2\n-Erwartungen im physikalischen Test übertroffen\n-Subjekt 8**** tritt in Konfrontation mit ***je** *****\n-11:33 Subjekt betritt Testbereich 3\n-12:00 20.04.**** Subjekt 8**** terminiert";
 			CUI.enabled = true;
 			Time.timeScale = 0;
 		}
@@ -188,10 +191,18 @@ public class Spieler : MonoBehaviour {
 		if(other.gameObject.tag == "Akte2" && Input.GetButtonDown("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
-			CUI_Info.text = "Testakte";
+			CUI_Info.text = "Die Problematik Klonen - Prof.Dr.Med. Karsten Sand" +
+				"Auszug aus dem Kapitel: Werkzeug der Evolution";
+			CUI_Text.text = "…\nDa eben genau dieses Werkzeug beim Erstellen von Klonen entfällt, unter der Annahme der Vorgang wurde wissenschaftlich korrekt und unter angemessenen Sicherheitsmaßnahmen durchgeführt, entwickelt sich automatisch ein Problem bezüglich der Anpassung an neue Umgebungsvariablen. Der „perfekte“ Klon stellt eine 100%ige Kopie des Lebewesens welches als Ausgangsmaterial dient dar. Ist besagter Klon nun einer veränderten Umgebung ausgesetzt, kann eine Anpassung an diese nur durch Umstellung von Lebensart oder ,beispielsweise im Falle des Homo Sapiens, durch Entwicklung neuer Werkzeuge o.ä. statt finden. Diese Anpassung ist allerdings nicht permanent und kann nur durch aufwendiges Lernen und Weitergabe von Wissen an die nächste Generation erhalten werden. Ein „fehlerhaftes“ Lebewesen kann sich allerdings, unter Zusammentreffen der richtigen Umstände, dauerhaft und für Nachfolgende Generationen anpassen. Lebewesen die an der Spitze ihrer respektiven Nahrungskette stehen, haben in ihrer Evolution in der Regel mehr Fehler erfahren als andere. Fehler die sie in den jeweiligen Umgebungen favorisieren.  Der Vorteil von Klonen ohne Fortpflanzung und bei reduzierter Inkubationszeit den Erhalt einer Spezies zu ermöglichen, trifft also immer auf das Problem das entweder jegliche Form von Evolution im Keim erstickt wird, oder „Fehler“ bzw. Anpassungen am genetischen Code erzwungen werden müssen. Dies führt zu zusätzlichen benötigten Mengen von Biokompomenten sowie höherer Verbrauch des womöglich wichtigsten Faktors dieser Diskussion: Zeit.\n..."; 
 			CUI.enabled = true;
 			Time.timeScale = 0;
 		}
+
+		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "button") {
+			Debug.Log ("btn gedrückt!");
+			btn_collider.enabled = false;
+
+		} 
 
 
 		//collect key
