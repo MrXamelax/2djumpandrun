@@ -1,19 +1,29 @@
-﻿using System.Collections;
+﻿// Importierte Klassen
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class Inventory : MonoBehaviour {
 
+	// Instanz von Inventory wird erzeugt
 	#region Singleton
 	public static Inventory instance;
+
+	// Wird einmaling und als erstes beim Aufrufen des Scripts ausgeführt (noch vor "Start"-Methode)
 	void Awake(){
 		instance = this;
 	}
 	#endregion
 
+
+	// Sprite-Array wird erstellt und im Inspector bestückt
 	public Sprite[] keycards;
+
+	// Image-Array wird erstellt und in Start-Methode mit 4 Einträgen initialisiert
 	Image[] image_items = new Image[4];
+
+	// 
 	List<Sprite> collectedCards = new List<Sprite>();
 
 	void Start () {

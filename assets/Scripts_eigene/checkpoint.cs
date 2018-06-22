@@ -1,28 +1,34 @@
-﻿using System.Collections;
+﻿// Importierte Klassen
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class checkpoint : MonoBehaviour {
 
-		public LevelManager levelManager; 
+	// Erstellen eines LevelManagers
+	public LevelManager levelManager; 
 
-	// Use this for initialization
+	// Wird einmaling und als erstes beim Aufrufen des Scripts ausgeführt
 	void Start () {
+
+		// Initialisierung des LevelManagers mit einem bereits existierendem
 		levelManager = FindObjectOfType<LevelManager>();
 	}
 	
-	// Update is called once per frame
+	// Wird einmal pro Bild aufgerufen
 	void Update () {
 		
 	}
 
+	// Wird aufgerufen, wenn der Trigger des checkpoint-Objekts mit einem anderen kollidiert
 	void OnTriggerEnter2D(Collider2D other){
 	
+		// Falls es mit dem des Spielers kollidiert, wird ein neuer Checkpoint gesetzt
 		if (other.tag == "Spieler") {
 			Debug.Log ("Checkpoint erreicht!");
-			//neuen Checkpoint setzen
+
+			// Neuen Checkpoint setzen
 			levelManager.currentCheckpoint = gameObject;
 		}
-	
 	}
 }
