@@ -21,11 +21,6 @@ public class PlayerMovement : MonoBehaviour {
 		rb = GetComponent<Rigidbody2D> ();
 		playerAnim = GetComponent<Animator> ();
 	}
-	
-	// 	Wird einmal pro Bildaktualisierung aufgerufen
-	void Update () {
-		
-	}
 
 	//	Wird eine festgelegte Anzahl mal pro Sekunde aufgerufen
 	void FixedUpdate() {

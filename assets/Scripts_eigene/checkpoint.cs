@@ -14,11 +14,6 @@ public class checkpoint : MonoBehaviour {
 		//	 Initialisierung des LevelManagers mit einem bereits existierendem
 		levelManager = FindObjectOfType<LevelManager>();
 	}
-	
-	// 	Wird einmal pro Bildaktualisierung aufgerufen
-	void Update () {
-		
-	}
 
 	// 	Wird aufgerufen, wenn der Trigger des checkpoint-Objekts mit einem anderen kollidiert
 	void OnTriggerEnter2D(Collider2D other){

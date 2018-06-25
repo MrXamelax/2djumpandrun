@@ -12,11 +12,6 @@ public class chainsaw : MonoBehaviour {
 	void Start () {
 		levelManager = FindObjectOfType<LevelManager> ();
 	}
-	
-	// 	Wird einmal pro Bildaktualisierung aufgerufen
-	void Update () {
-		
-	}
 
 	// 	Wird aufgerufen, wenn das chainsaw-Objekt mit einem anderen kollidiert
 	void OnCollisionEnter2D(Collision2D other){
