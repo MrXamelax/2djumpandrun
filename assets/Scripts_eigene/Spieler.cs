@@ -204,10 +204,8 @@ public class Spieler : MonoBehaviour {
 			CUI.enabled = true;
 			Time.timeScale = 0;
 		}
-
-<<<<<<< HEAD
-=======
-		//AKTE3
+			
+		//	Falls es Akte2 ist
 		if(other.gameObject.tag == "Akte3" && Input.GetButtonDown("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
@@ -218,20 +216,25 @@ public class Spieler : MonoBehaviour {
 			Time.timeScale = 0;
 		}
 
+		//	Falls es ein Knopf ist
 		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "button") {
 			Debug.Log ("btn gedrückt!");
 			btn_collider.enabled = false;
-
 		} 
+
+		//	Falls es ein Objekt zum zerstören ist
 		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "destroy") {
 			Destroy (other.gameObject);
-
 		} 
-
->>>>>>> 03131e91c50935ef5c7fd5a599d631de9c126769
-		//collect key
+			
+		//	Falls der Aktivieren-Knopf gedrückt wurde
 		if (Input.GetButtonDown("Aktivieren")) {
+
+			//	Wird zurückgegeben, falls keine Schlüsselkarte vorliegt (exit-code für Inventory-Klasse)
 			byte num = 255;
+
+			//	Falls doch eine Schlüsselkarte vorliegt wird der jeweilige Code der Karte (num) mit übergeben
+			//	So kann in der Klasse Inventory rekonstruiert werden, auf welchem Schlüssel der Spieler steht
 			switch(other.gameObject.tag) {
 			case "key_blue":
 				Variablen.keyCount_blue = true;
@@ -254,19 +257,9 @@ public class Spieler : MonoBehaviour {
 				num = 3;
 				break;
 			}
+
+			//	Instanz von Inventory wird erzeugt und dort befindliche DrawInventory wird mit entsprechenden Parametern aufgerufen
 			Inventory.instance.DrawInventory (num, true);
 		}
-
-		//	Falls es der rote Knopf ist
-		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "button") {
-			Debug.Log ("btn gedrückt!");
-			btn_collider.enabled = false;
-		} 
-
-
-		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "destroy") {
-			Destroy (other.gameObject);
-
-		} 
 	}
 }
