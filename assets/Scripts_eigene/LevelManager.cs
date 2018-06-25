@@ -1,28 +1,28 @@
-﻿using System.Collections;
+﻿//	Importierte Klassen
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class LevelManager : MonoBehaviour {
 
 
-	//aktuelle Checkpoint
+	//	Benötigte Objekte werden erstellt
 	public GameObject currentCheckpoint;
-
-	//spieler gameobjekt
 	public GameObject spieler;
 	AudioSource audio_dead;
 
-	void Start(){
-	
+	//	Wird einmaling und als erstes beim Aufrufen des Scripts ausgeführt
+	void Start() {
+
+		//	Tonquelle wird initialisiert
 		audio_dead = GameObject.FindGameObjectWithTag ("Dead").GetComponent<AudioSource> ();
 	}
-		
-	public void RespawnPlayer(){
+
+	//	Methode zum Zurücksetzen des Spielers
+	public void RespawnPlayer() {
 	
-			//Spieler an Checkpoint Position bringen
+		//	Sterbeton wird abgespielt und Spieler wird zum letzten erreichten Chckpoint zurückgesetzt
 		audio_dead.Play ();
 		spieler.transform.position = currentCheckpoint.transform.position;
-	
-	
 	}
 }

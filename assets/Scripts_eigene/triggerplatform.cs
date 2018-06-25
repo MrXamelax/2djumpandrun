@@ -16,11 +16,9 @@ public class triggerplatform : MonoBehaviour {
 		if (aktiv) {
 			Door_trigger.enabled = false;
 		} 
-		else 
-		{
+		else {
 			Door_trigger.enabled = true;		
 		}
-		
 	}
 
 
@@ -31,7 +29,6 @@ public class triggerplatform : MonoBehaviour {
 			Debug.Log ("Trigger aktiviert");
 			aktiv = true;
 		}
-	
 	}
 
 	void OnTriggerExit2D(Collider2D other){
@@ -40,6 +37,5 @@ public class triggerplatform : MonoBehaviour {
 			Debug.Log ("Trigger deaktiviert");
 			aktiv = false;
 		}
-
 	}
 }

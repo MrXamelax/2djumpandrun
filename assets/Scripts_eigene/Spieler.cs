@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿//	Importierte Klassen
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 
 public class Spieler : MonoBehaviour {
-	
+
+	//	Ganz zum Anfang wird eine Instanz dieser Klasse erzeugt
 	#region Singleton
 	public static Spieler instance;
 	void Awake(){
@@ -13,6 +15,7 @@ public class Spieler : MonoBehaviour {
 	}
 	#endregion
 
+	//	Benötigte Variablen und Objekte werden erstellt
 	private Text textfield;
 	private bool inTrigger_blue = false;
 	private bool inTrigger_green = false;
@@ -34,7 +37,10 @@ public class Spieler : MonoBehaviour {
 	Animator door_blue_anim;
 	BoxCollider2D btn_collider;
 
+	//	Wird einmaling und als erstes beim Aufrufen des Scripts ausgeführt
 	void Start () {
+
+		//	Variablen und Objekte werden initialisiert
 		textfield = GameObject.FindGameObjectWithTag ("Textfield").GetComponent<Text> ();
 		CUI = GameObject.FindGameObjectWithTag ("CUI").GetComponent<Canvas>();
 		CUI_Text = GameObject.FindGameObjectWithTag ("CUI_Text").GetComponent<Text>();
@@ -49,18 +55,19 @@ public class Spieler : MonoBehaviour {
 		door_green_anim = GameObject.FindGameObjectWithTag ("door_green_anim").GetComponent<Animator> ();
 		door_blue_anim = GameObject.FindGameObjectWithTag ("door_blue_anim").GetComponent<Animator> ();
 		btn_collider = GameObject.FindGameObjectWithTag ("button").GetComponent<BoxCollider2D> ();
-
-
 	}
 
-	IEnumerator BlockPause(){
+	//	Methode um Probleme mit dem Pausen-Menü zu verhindern
+	IEnumerator BlockPause() {
 		Variablen.allowPause = false;
 		yield return new WaitForSeconds (0.1f);
 		Variablen.allowPause = true;
 	}
 
+	// 	Wird einmal pro Bildaktualisierung aufgerufen
 	void Update () {
 
+		//	Schließen einer Collectable-Anzeige
 		if (Input.GetButtonDown("Cancel") == true && CUI_View == true) {
 			CUI_View = false;
 			CUI.enabled = false;
@@ -69,7 +76,7 @@ public class Spieler : MonoBehaviour {
 		}
 
 
-		//Tür ROT aufschließen
+		//rote Tür aufschließen
 		if (Input.GetButtonDown("Aktivieren") && inTrigger_red == true && Variablen.keyCount_red == true) {
 			audio_red.Play ();
 			Variablen.keyCount_red = false;
@@ -78,7 +85,7 @@ public class Spieler : MonoBehaviour {
 		} 
 			 
 
-		//Tür GOLD aufschließen
+		//goldene Tür aufschließen
 		if (Input.GetButtonDown("Aktivieren") && inTrigger_gold == true && Variablen.keyCount_gold == true) {
 			audio_gold.Play ();
 			Variablen.keyCount_gold = false;
@@ -86,7 +93,7 @@ public class Spieler : MonoBehaviour {
 			Inventory.instance.DrawInventory (2, false);
 		} 
 
-		//Tür GRÜN aufschließen
+		//grüne Tür aufschließen
 		if (Input.GetButtonDown("Aktivieren") && inTrigger_green == true && Variablen.keyCount_green == true) {
 			audio_green.Play ();
 			Variablen.keyCount_green = false;
@@ -94,38 +101,38 @@ public class Spieler : MonoBehaviour {
 			Inventory.instance.DrawInventory (3, false);
 		}
 
-		//Tür BLAU aufschließen
+		//blaue Tür aufschließen
 		if (Input.GetButtonDown("Aktivieren") && inTrigger_blue == true && Variablen.keyCount_blue == true) {
+			audio_blue.Play ();
 			Variablen.keyCount_blue = false;
 			door_blue_anim.enabled = true;
 			Inventory.instance.DrawInventory (0, false);
-			audio_blue.Play ();
 		}
-
 	}
 
+	// 	Wird aufgerufen, wenn der Trigger des Spieler-Objekts mit einem anderen kollidiert
 	void OnTriggerEnter2D(Collider2D other) {
 
-
-
+		//	Jumppad-Ton wird abgespielt
 		if (other.gameObject.tag == "Jumppad") {
 			audio_jumppad.Play ();
 		}
 
 
-		// Textfeld aktivieren bei Betreten
+		//	Hilfstext aktivieren
 		if(other.gameObject.tag == "Press") {
 			textfield.text = "Press E";
 			textfield.enabled = true;
 		}
 
+		//	Hilfstext aktivieren
 		if(other.gameObject.tag == "key_red" || other.gameObject.tag == "key_gold" || other.gameObject.tag == "key_green"|| other.gameObject.tag == "key_blue") {
 			textfield.enabled = true;
 			textfield.text="Press E";
 		}
 
 
-		//In TürBereich
+		//	Wenn der Spieler auf einem Schlüssel steht
 		if (other.gameObject.tag == "Door_red") {
 			inTrigger_red = true;
 		}
@@ -143,19 +150,20 @@ public class Spieler : MonoBehaviour {
 		}
 	}
 
+	// 	Wird aufgerufen, wenn ein Objekt den Trigger des Spieler-Objekts verlässt
 	void OnTriggerExit2D(Collider2D other)
 	{
-		//Textfeld deaktiveren beim Verlassen
+		//	Hilfstext deaktiveren
 		if (other.tag == "Press") {
 			textfield.enabled = false;
 		}
 
+		//	Wenn der Spieler vom Schlüssel herunter geht
 		if(other.gameObject.tag == "key_red" || other.gameObject.tag == "key_gold" || other.gameObject.tag == "key_green" || other.gameObject.tag == "key_blue") {
 			textfield.enabled = false;
 		}
-
-
-		//Ausserhalb TürBereich
+			
+		//	Wenn der Spieler den Türbereich verlässt
 		if (other.gameObject.tag == "Door_red") {
 			inTrigger_red = false;
 		}
@@ -173,11 +181,10 @@ public class Spieler : MonoBehaviour {
 		}
 	}
 
-
+	// 	Wird aufgerufen, wenn ein Objekt auf dem Trigger des Spieler-Objekts steht
 	void OnTriggerStay2D(Collider2D other){
 
-
-		//AKTE1
+		//	Falls es Akte1 ist
 		if(other.gameObject.tag == "Akte1" && Input.GetButtonDown("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
@@ -187,7 +194,7 @@ public class Spieler : MonoBehaviour {
 			Time.timeScale = 0;
 		}
 
-		//AKTE2
+		//	Falls es Akte2 ist
 		if(other.gameObject.tag == "Akte2" && Input.GetButtonDown("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
@@ -197,16 +204,6 @@ public class Spieler : MonoBehaviour {
 			CUI.enabled = true;
 			Time.timeScale = 0;
 		}
-
-		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "button") {
-			Debug.Log ("btn gedrückt!");
-			btn_collider.enabled = false;
-
-		} 
-		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "destroy") {
-			Destroy (other.gameObject);
-
-		} 
 
 		//collect key
 		if (Input.GetButtonDown("Aktivieren")) {
@@ -235,7 +232,17 @@ public class Spieler : MonoBehaviour {
 			}
 			Inventory.instance.DrawInventory (num, true);
 		}
+
+		//	Falls es der rote Knopf ist
+		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "button") {
+			Debug.Log ("btn gedrückt!");
+			btn_collider.enabled = false;
+		} 
+
+
+		if (Input.GetButtonDown ("btn") && other.gameObject.tag == "destroy") {
+			Destroy (other.gameObject);
+
+		} 
 	}
-
-
 }
