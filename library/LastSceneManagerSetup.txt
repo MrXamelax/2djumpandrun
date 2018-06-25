@@ -1,4 +1,4 @@
 sceneSetups:
-- path: assets/Level 2.unity
+- path: assets/Endscreen.unity
   isLoaded: 1
   isActive: 1
