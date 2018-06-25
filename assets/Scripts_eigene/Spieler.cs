@@ -191,9 +191,20 @@ public class Spieler : MonoBehaviour {
 		if(other.gameObject.tag == "Akte2" && Input.GetButtonDown("Lesen")) {
 			CUI_View = true;
 			Destroy (other.gameObject);
-			CUI_Info.text = "Die Problematik Klonen - Prof.Dr.Med. Karsten Sand" +
+			CUI_Info.text = "Die Problematik Klonen" +
 				"Auszug aus dem Kapitel: Werkzeug der Evolution";
 			CUI_Text.text = "…\nDa eben genau dieses Werkzeug beim Erstellen von Klonen entfällt, unter der Annahme der Vorgang wurde wissenschaftlich korrekt und unter angemessenen Sicherheitsmaßnahmen durchgeführt, entwickelt sich automatisch ein Problem bezüglich der Anpassung an neue Umgebungsvariablen. Der „perfekte“ Klon stellt eine 100%ige Kopie des Lebewesens welches als Ausgangsmaterial dient dar. Ist besagter Klon nun einer veränderten Umgebung ausgesetzt, kann eine Anpassung an diese nur durch Umstellung von Lebensart oder ,beispielsweise im Falle des Homo Sapiens, durch Entwicklung neuer Werkzeuge o.ä. statt finden. Diese Anpassung ist allerdings nicht permanent und kann nur durch aufwendiges Lernen und Weitergabe von Wissen an die nächste Generation erhalten werden. Ein „fehlerhaftes“ Lebewesen kann sich allerdings, unter Zusammentreffen der richtigen Umstände, dauerhaft und für Nachfolgende Generationen anpassen. Lebewesen die an der Spitze ihrer respektiven Nahrungskette stehen, haben in ihrer Evolution in der Regel mehr Fehler erfahren als andere. Fehler die sie in den jeweiligen Umgebungen favorisieren.  Der Vorteil von Klonen ohne Fortpflanzung und bei reduzierter Inkubationszeit den Erhalt einer Spezies zu ermöglichen, trifft also immer auf das Problem das entweder jegliche Form von Evolution im Keim erstickt wird, oder „Fehler“ bzw. Anpassungen am genetischen Code erzwungen werden müssen. Dies führt zu zusätzlichen benötigten Mengen von Biokompomenten sowie höherer Verbrauch des womöglich wichtigsten Faktors dieser Diskussion: Zeit.\n..."; 
+			CUI.enabled = true;
+			Time.timeScale = 0;
+		}
+
+		//AKTE3
+		if(other.gameObject.tag == "Akte3" && Input.GetButtonDown("Lesen")) {
+			CUI_View = true;
+			Destroy (other.gameObject);
+			CUI_Info.text = "Bericht 72470 Subjektreihe 8" +
+				"Auszug aus dem Kapitel: Werkzeug der Evolution";
+			CUI_Text.text = "-Alle überlebenden Subjekte der Gruppe 8 wurden planmäßig terminiert\n-27 Subjekte erreichten die letzte Testphase, davon 9 erfolgreiche Abschlüsse\n-12 Subjekte realisierten die Natur der Tests und ihrer Umgebung\n-2 Subjekte der vorher angesprochenen Gruppe begangen Suizid in Anbetracht der Situation\n-37 Subjekte verstarben in Testbereich 1\n-25 Subjekte verstarben in Testbereich 2\n-19 Subjekte verstarben in Testbereich 3\n-Folgende Testbereiche detailliert im Einzelbericht: 4-10\n-Fortschritt konnte sowohl im motorischen als auch rezeptuellen Bereich verzeichnet werden (siehe Detailbericht)\n-verbliebene Biokomponenten an Wiederverwertung übermittelt\n-Tanks und Testbereiche werden für Gruppe 9 gereinigt\n-Klonprozess Gruppe 9 erfolgreich initiiert\n-Testbeginn Gruppe 9 planmäßig 30.07.****\n-Testszenario für Gruppe 9: Fehler im System – Ausbruch Subjekt"; 
 			CUI.enabled = true;
 			Time.timeScale = 0;
 		}
